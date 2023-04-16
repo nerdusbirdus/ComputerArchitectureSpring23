@@ -1,3 +1,6 @@
+//WORKS
+//this program is a hello world
+//this program prints the square root of 4 and the size of various data types in bytes
 int main() {
     #include <stdio.h>
     #include <math.h>
