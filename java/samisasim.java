@@ -1,4 +1,5 @@
-// Sam 16-bit ISA Simulator
+// not by me, by Neal Nelson
+//Sam 16-bit ISA Simulator
 // Neal Nelson, Mar 2023
 // Extends to 16 bits and adds Mul, Div instructions to the SamIsaJanSim.java simulator
 // This is NOT an object oriented program, rather, a C program in Java.

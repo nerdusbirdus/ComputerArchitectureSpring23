@@ -1,4 +1,5 @@
-// Sam16 ISA Assembler
+// not by me, by Neal Nelson
+//Sam16 ISA Assembler
 // Neal Nelson, Mar 2023
 // New instructions for Mul, Div
 // This is NOT an object oriented program, rather, a C program in Java.
