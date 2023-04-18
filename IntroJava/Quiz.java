@@ -1,4 +1,4 @@
-package classFinalProject;
+package IntroJava;
 import java.util.Scanner;
 public class Quiz
 {

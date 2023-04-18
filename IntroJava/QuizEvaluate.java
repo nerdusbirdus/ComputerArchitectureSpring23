@@ -1,4 +1,4 @@
-package classFinalProject;
+package IntroJava;
 // this class written by Kaj Parker-Benson takes the 5 different scores calculated using the Quiz class, then
 //the array of scores from Quiz is summed up with values corresponding to Good or Evil or Lawful or Chaotic.
 public class QuizEvaluate 

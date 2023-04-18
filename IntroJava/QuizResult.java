@@ -1,4 +1,4 @@
-package classFinalProject;
+package IntroJava;
 public class QuizResult
 {
 	
