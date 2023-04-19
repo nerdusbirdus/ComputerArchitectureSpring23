@@ -1,0 +1,43 @@
+
+adder:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000100003f28 <_adder2>:
+100003f28: ff 43 00 d1 	sub	sp, sp, #16
+100003f2c: e0 0f 00 b9 	str	w0, [sp, #12]
+100003f30: e8 0f 40 b9 	ldr	w8, [sp, #12]
+100003f34: 00 09 00 11 	add	w0, w8, #2
+100003f38: ff 43 00 91 	add	sp, sp, #16
+100003f3c: c0 03 5f d6 	ret
+
+0000000100003f40 <_main>:
+100003f40: ff c3 00 d1 	sub	sp, sp, #48
+100003f44: fd 7b 02 a9 	stp	x29, x30, [sp, #32]
+100003f48: fd 83 00 91 	add	x29, sp, #32
+100003f4c: 08 00 80 52 	mov	w8, #0
+100003f50: a8 43 1f b8 	stur	w8, [x29, #-12]
+100003f54: bf c3 1f b8 	stur	wzr, [x29, #-4]
+100003f58: 08 05 80 52 	mov	w8, #40
+100003f5c: a8 83 1f b8 	stur	w8, [x29, #-8]
+100003f60: a0 83 5f b8 	ldur	w0, [x29, #-8]
+100003f64: f1 ff ff 97 	bl	0x100003f28 <_adder2>
+100003f68: a0 83 1f b8 	stur	w0, [x29, #-8]
+100003f6c: a9 83 5f b8 	ldur	w9, [x29, #-8]
+100003f70: e8 03 09 aa 	mov	x8, x9
+100003f74: e9 03 00 91 	mov	x9, sp
+100003f78: 28 01 00 f9 	str	x8, [x9]
+100003f7c: 00 00 00 90 	adrp	x0, 0x100003000 <_main+0x3c>
+100003f80: 00 90 3e 91 	add	x0, x0, #4004
+100003f84: 05 00 00 94 	bl	0x100003f98 <_printf+0x100003f98>
+100003f88: a0 43 5f b8 	ldur	w0, [x29, #-12]
+100003f8c: fd 7b 42 a9 	ldp	x29, x30, [sp, #32]
+100003f90: ff c3 00 91 	add	sp, sp, #48
+100003f94: c0 03 5f d6 	ret
+
+Disassembly of section __TEXT,__stubs:
+
+0000000100003f98 <__stubs>:
+100003f98: 10 00 00 b0 	adrp	x16, 0x100004000 <__stubs+0x4>
+100003f9c: 10 02 40 f9 	ldr	x16, [x16]
+100003fa0: 00 02 1f d6 	br	x16
