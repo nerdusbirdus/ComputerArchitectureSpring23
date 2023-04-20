@@ -1,0 +1,21 @@
+	in
+start	jan	done
+	jax	done
+	sta	num
+loop	sub	one
+	jaz	done
+	lda	count
+	add	one
+	sta	count
+	lda	num
+	rem	two
+	jaz	even
+odd	lda	num
+	mul	three
+	add	one
+	sta	num
+	jmp	next
+even	lda	num
+	div	two
+	sta	num
+

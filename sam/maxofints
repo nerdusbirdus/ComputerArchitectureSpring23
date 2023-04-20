@@ -1,0 +1,12 @@
+ start     in
+        sta     num1
+        in
+        sta     num2
+        jn      n2big
+n2big   lda     num1
+        jmp     done
+n2big   lda     num2
+done    out 
+        hlt
+first   dat      00 
+second  dat      00 
