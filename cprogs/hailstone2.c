@@ -1,4 +1,4 @@
-#include <stdio.h> // need to include for user input
+#include <stdio.h> // need to include for user input/
 
 int main() {
     int n, length = 0;
