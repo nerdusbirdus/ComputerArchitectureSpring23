@@ -1,0 +1,30 @@
+//numArgs dot s with comments 
+
+	//assembly code of numArgs with comments and no dot operators by nerdusbirdus
+    //why are all the instructions formatted Destination, Source instead of Source, Destination here?
+	
+	sub	sp, sp, #48 ## subtract 48 bytes from stack pointer, growing stack by 48 bytes
+	
+	stp	x29, x30, [sp, #32]             ; 16-byte Folded Spill ## stores what is in registers x29 and x30 into sp 32 on the stack, idk what a folded spill is
+	add	x29, sp, #32                    #add what is in register x29 to sp #32
+	
+	mov	w8, #0                          ## moves 0 into register w8
+	str	w8, [sp, #8]                    ; 4-byte Folded Spill  ## stores value from w8 into stack pointer location 8
+	stur	wzr, [x29, #-4]             ##stores wzr register value into memory location [x29, #-4]
+	stur	w0, [x29, #-8]              ## stores w0 value into memory location [x29, #-8]
+	str	x1, [sp, #16]                   ## stores x1 value into stack pointer location 16
+	ldur	w8, [x29, #-8]              ## loads w8 register with value at location [x29, #-8]
+	str	w8, [sp, #12]                   ## stores w8 register value into stack pointer location 12
+	ldr	w9, [sp, #12]                   ## loads w9 register with value from stack pointer location 12. 
+                                        ; implicit-def: $x8  ##somehow this means that register x8 is set by the previous instruction?
+	mov	x8, x9                          ## moves value from x9 into x8
+	mov	x9, sp                          ## moves value from stack pointer into x9 register 
+	str	x8, [x9]                        ## stores value of x8 into x9 which seems redundant, because we just loaded x8 with x9? We can probably get rid of this one. This would be the unnecessary save to cut
+	adrp	x0, l_.str@PAGE             ## addresses string literal
+	add	x0, x0, l_.str@PAGEOFF          ## something also to do with the string literal address
+	bl	_printf                         ## calls printf, I don't know why it is called bl here. 
+	ldr	w0, [sp, #8]                    ; 4-byte Folded Reload  ## load w0 with the value at stack pointer 8 which had the value from w8 in it
+	ldp	x29, x30, [sp, #32]             ; 16-byte Folded Reload ## load x29 and x30 from value at stack pointer 32
+	add	sp, sp, #48                     ## adds 48 into stack pointer, shrinking the stack.
+	ret                                 ##ends the function and returns to main 
+	

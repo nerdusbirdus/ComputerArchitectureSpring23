@@ -1,3 +1,4 @@
+	//disassembly code of numArgs with comments by nerdusbirdus
 	.section	__TEXT,__text,regular,pure_instructions
 	.build_version macos, 13, 0	sdk_version 13, 3
 	.globl	_main                           ; -- Begin function main

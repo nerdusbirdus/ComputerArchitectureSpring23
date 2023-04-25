@@ -1,0 +1,75 @@
+# assembly code of adder2, with comments by nerdusbirdus
+	.file	"adder2.c"      #declares the file name
+	.text					#declares that text is the file type
+	.globl	adder2			# declares that the name of the function is adder2
+	.type	adder2, @function #declares the name and type of the program, a function
+adder2:
+.LFB0: #stackoverflow says this is a local label
+	.cfi_startproc #I guess this begins the function?
+	endbr64 #according to man pages this terminates an indirect branch, whatever that means.
+	pushq	%rbp #finally something intelligible, this pushes the base pointer by q which is a long
+	.cfi_def_cfa_offset 16 #defines canonical frame address whatever that is (address to store args?)
+	.cfi_offset 6, -16 #this specifies that the base pointer register is 16 bytes below the CFA?
+	movq	%rsp, %rbp #moves the value from the stack pointer to the base pointer, growing the stack
+	.cfi_def_cfa_register 6 #makes the value of the frame pointer register the same as the argument, 6
+	movl	%edi, -4(%rbp) #moves value of %edi into a register 4 bytes below base pointer, growing stack by 4 bytes.
+	movl	-4(%rbp), %eax #moves the value at -4(%rbp) into %eax
+	addl	$2, %eax #adds 2 to value in %eax
+	popq	%rbp %pops the base pointer off the stack
+	.cfi_def_cfa 7, 8 #something to do with telling the compiler the base pointer moved
+	ret #returns to main function
+	.cfi_endproc #something about the canonical frame index(?) whatever that is?
+.LFE0:
+	.size	adder2, .-adder2 #what is this? Something about the size of the function?
+	.section	.rodata
+.LC0:
+	.string	"x is: %d\n" #seems to store the string literal
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB1:
+	.cfi_startproc #starts main
+	endbr64 #"terminates indirect branch"
+	pushq	%rbp #pushes %rbp onto stack, starting program
+	.cfi_def_cfa_offset 16 #tells compiler about it, the base pointer moved 16 bytes
+	.cfi_offset 6, -16 #something about a 16 byte move but what is the 6?
+	movq	%rsp, %rbp #moves stack pointer into base pointer
+	.cfi_def_cfa_register 6 # does something with canonical frame address and 6
+	subq	$16, %rsp # subtracts 16 from stack pointer, grows stack
+	movl	$40, -4(%rbp) #moves 40 into stack position 4 bytes lower than base pointer
+	movl	-4(%rbp), %eax #moves the value from -4(%rbp) into %eax
+	movl	%eax, %edi #moves source %eax into destination %edi
+	call	adder2 #runs adder2 function 
+	movl	%eax, -4(%rbp) #moves value from %eax into -4(%rbp)
+	movl	-4(%rbp), %eax # moves value from -4(%rbp) into %eax and this seems redundant
+	movl	%eax, %esi #move eax into esi 
+	leaq	.LC0(%rip), %rax #loads effective address indicated by %rip register 
+	movq	%rax, %rdi #moves a pointer value from %rax to %rdi
+	movl	$0, %eax #moves 0 into %eax, clearing %eax?
+	call	printf@PLT #calls printf to print
+	movl	$0, %eax #also moves 0 into %eax?
+	leave #this ends the function by resetting stack and base pointers
+	.cfi_def_cfa 7, 8 # tells compiler something about it
+	ret #return statement
+	.cfi_endproc #ends program somehow
+.LFE1:
+	.size	main, .-main #information about this program maybe? and the GCC version?
+	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
+	.section	.note.GNU-stack,"",@progbits
+	.section	.note.gnu.property,"a"
+	.align 8
+	.long	1f - 0f
+	.long	4f - 1f
+	.long	5
+0:
+	.string	"GNU" #honestly Idk what this does other than hold a string
+1:
+	.align 8
+	.long	0xc0000002
+	.long	3f - 2f
+2:
+	.long	0x3
+3:
+	.align 8
+4:
