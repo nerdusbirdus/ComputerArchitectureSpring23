@@ -1,0 +1,38 @@
+	#sumTotal with comments by nerdusbirdus
+	#dot operators taken out, code made my own with commenting and optimizing
+    
+## %bb.0:
+	pushq	%rbp
+	movq	%rsp, %rbp
+	jmp	LBB0_1
+LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
+	cmpl	$0, _count(%rip)
+	jl	LBB0_3
+## %bb.2:                               ##   in Loop: Header=BB0_1 Depth=1
+	movl	_count(%rip), %eax
+	addl	_total(%rip), %eax
+	movl	%eax, _total(%rip)
+	movl	_count(%rip), %eax
+	addl	$-1, %eax
+	movl	%eax, _count(%rip)
+	jmp	LBB0_1
+LBB0_3:
+	popq	%rbp
+	retq
+_main:                                  ## @main
+## %bb.0:
+	pushq	%rbp
+	movq	%rsp, %rbp
+	subq	$16, %rsp
+	movl	$0, -4(%rbp)
+	callq	_start
+	movl	_total(%rip), %esi
+	leaq	L_.str(%rip), %rdi
+	movb	$0, %al
+	callq	_printf
+	xorl	%eax, %eax
+	addq	$16, %rsp
+	popq	%rbp
+	retq
+                                        ## -- End function
+	

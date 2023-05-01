@@ -1,0 +1,14 @@
+#AddTwoFun.asm assembly code in x86_64 for adding two integers together that are passed as arguments when the program runs, in a function, with comments by nerdusbirdus
+#code inspired by Prof. Neal Nelson's code from class
+
+pushq   %rbp            #this is the same as mov and sub, this moves the callee's pointer address onto a new stackframe so it can be returned to
+movq    %rsp, %rbp      #moves the stack frame pointer to where it needs to be for this function
+movl    %edi, -4(%rbp)  #puts the argument passed which was stored in register %edi onto the stack at position 4 bytes below base pointer
+movl    %esi, -8(%rbp)  #puts the other argument passed which was in register %esi to the stack 8 bytes below base pointer
+movl    -4(%rbp), %edx  #moves the value of 1st arg into %edx
+movl    -8(%rbp), %eax  #moves the value of 2nd arg into %eax
+addl    %edx, %eax      #adds the two values together
+popq    %rbp            #pops the data off the stack, so it does a mov of the %rbp value and then adds the same number of bytes that were subtracted before to shrink stack
+retq                    #jumps to the address of the caller function 
+
+

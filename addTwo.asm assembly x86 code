@@ -1,4 +1,4 @@
-addTwo.asm assembly x86 code
+addTwo.asm assembly x86 code for adding two (2) to an integer, not adding two integers.
 addTwo:
 pushq	%rbp #finally something intelligible, this pushes the base pointer by q which is a long
 	movq	%rsp, %rbp #moves the value from the stack pointer to the base pointer, growing the stack

@@ -1,0 +1,49 @@
+	max2.s #edited and commented assembly code for max of 2 ints created with arch -x86_64 gcc -S -o max2in max2in.c
+	
+## %bb.0 (main):
+	pushq	%rbp                    #push the base pointer onto the stack 
+	movq	%rsp, %rbp              #move the value from the stack pointer to the base pointer, setting the new stack frame
+	subq	$32, %rsp               #subtract 32 from the value in %rsp, grows stack 32 bytes.
+	movl	$0, -4(%rbp)            #moves 0 into a spot on the stack 4 bytes below the base pointer. I think this is the automatic return of 0 and maybe redundant.  
+	movl	%edi, -8(%rbp)          #moves the first argument passed when running the program from the register for the first parameter, %edi, onto stackframe.
+	movq	%rsi, -16(%rbp)         #moves the value from %rsi which should be the second argument onto stackframe below the first one
+	cmpl	$3, -8(%rbp)            #compares the value of 3 to the value in -8(%rbp) which is the number of arguments, sets condition code
+	je	LBB0_2                      #if the value equals 3 then jump to LBB0_2 which is the rest of main
+## %bb.1 (usage note print):        #runs if the value is not 3
+	leaq	L_.str(%rip), %rdi      #load effective address which loads the string at L.str that the instruction pointer is at into %rdi 
+	movb	$0, %al                 #moves a byte for the character 0 into the lower 8 bytes of the register %rax 
+	callq	_printf                 #calls printf function to print usage note
+	movl	$1, -4(%rbp)            #moves the number 1 into stack frame 4 bytes below base pointer where default return had been zero 
+	jmp	LBB0_6                      #jump to LBB0_6 which is the end of the program
+## LBB0_2 (main continued):
+	movq	-16(%rbp), %rax         #moves the value at 16 below RBP which I believe is the second argument into %rax 
+	movq	8(%rax), %rdi           #moves the value in %rax plus 8 to %rdi (not sure why plus 8)
+	callq	_atoi                   #calls the atoi function to parse the argument as an integer
+	movl	%eax, -20(%rbp)         #moves value in %eax (rax lower 32) to 20 bytes below rpb on stack frame for first arg
+	movq	-16(%rbp), %rax         #moves value at 16 below rbp (2nd arg) into %rax 
+	movq	16(%rax), %rdi          #moves value of 2nd arg plus 16 into %rdi (not sure why plus 16)
+	callq	_atoi                   #calls atoi function to parse argument as integer
+	movl	%eax, -24(%rbp)         #moves value in %eax (rax lower 32) to 24 bytes below base pointer on stack frame for 2nd arg
+	movl	-20(%rbp), %eax         #moves value of first arg into %eax
+	cmpl	-24(%rbp), %eax         #compares value of 2nd arg with 1st arg in eax
+	jl	LBB0_4                      #jump if less instruction, meaning if arg1>arg2 jump to LBB0_4 else continue
+## %bb.3 (if arg2 is more):
+	movl	-20(%rbp), %eax         #move the value of first arg into %eax (where it was already, this is redundant)
+	movl	%eax, -28(%rbp)         #move value of first arg from eax to 28 bytes below base pointer
+	jmp	LBB0_5                       #Jumps to LBB0_5
+LBB0_4 (if arg2 is less):
+	movl	-24(%rbp), %eax         #moves value of arg2 to %eax replacing arg1
+	movl	%eax, -28(%rbp)         #moves value of eax to 28 below rbp
+LBB0_5 (print the max):
+	movl	-20(%rbp), %esi         #moves value of first arg into %esi, rdi lower 32
+	movl	-24(%rbp), %edx         #moves value of second arg into rdx lower 32
+	movl	-28(%rbp), %ecx         #moves value of the max, whichever that was, into %rcx lower 32
+	leaq	L_.str.1(%rip), %rdi    #loads effective address of the string that will be printing with these args
+	movb	$0, %al                 #moves 0 into lower 8 of %rax I am not sure why
+	callq	_printf                 #calls printf to print the strings and the args, printing out which is the max and the two numbers
+LBB0_6 (end program):           
+	movl	-4(%rbp), %eax          #moves the zero value from 4 below base pointer to %eax
+	addq	$32, %rsp               #adds 32 to the stack pointer, shrinking stack by the 32 bytes it was grown by before
+	popq	%rbp                    #pops the base pointer off the stack
+	retq                            #returns to the caller function but in this case ends program 
+  
