@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "theGronkalizer",
+            "request": "launch",
+            "mainClass": "IntroJava.theGronkalizer",
+            "projectName": "ComputerArchitectureSpring23_fcbd10e2"
+        },
+        {
+            "type": "java",
+            "name": "samsim",
+            "request": "launch",
+            "mainClass": "sam.samsim",
+            "projectName": "ComputerArchitectureSpring23_fcbd10e2"
+        },
+        {
+            "type": "java",
+            "name": "samasm",
+            "request": "launch",
+            "mainClass": "sam.samasm",
+            "projectName": "ComputerArchitectureSpring23_fcbd10e2"
+        },
+        {
+            "type": "java",
             "name": "EchoArgs",
             "request": "launch",
             "mainClass": "EchoArgs",

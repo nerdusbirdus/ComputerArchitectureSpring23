@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-// ./addTwo int int
+// ./sumTwo int int
 int main(int n, char* args[]) {
   int num1, num2, max;
   if (n < 3)  {
@@ -9,5 +9,5 @@ int main(int n, char* args[]) {
     }
   num1 = atoi(args[1]);
   num2 = atoi(args[2]);
-  printf("addTwo of %d and %d is: %d\n", num1, num2, num1 + num2);
+  printf("The sum of %d and %d is: %d\n", num1, num2, num1 + num2);
   }

@@ -10,5 +10,5 @@ int main(int n, char* args[]) {
   num1 = atoi(args[1]);
   num2 = atoi(args[2]);
   if (num1 >= num2) max = num1; else max = num2;
-  printf("addTwo of %d and %d is: %d\n", num1, num2, max);
+  printf("The bigger of of %d and %d is: %d\n", num1, num2, max);
   }

@@ -1,0 +1,28 @@
+addTwo.asm assembly x86 code
+addTwo:
+pushq	%rbp #finally something intelligible, this pushes the base pointer by q which is a long
+	movq	%rsp, %rbp #moves the value from the stack pointer to the base pointer, growing the stack
+	movl	%edi, -4(%rbp) #moves value of %edi into a register 4 bytes below base pointer, growing stack by 4 bytes.
+	movl	-4(%rbp), %eax #moves the value at -4(%rbp) into %eax
+	addl	$2, %eax #adds 2 to value in %eax
+	popq	%rbp %pops the base pointer off the stack
+	ret #returns to main function
+main:
+
+	pushq	%rbp #pushes %rbp onto stack, starting program
+	movq	%rsp, %rbp #moves stack pointer into base pointer
+	subq	$16, %rsp # subtracts 16 from stack pointer, grows stack
+	movl	$40, -4(%rbp) #moves 40 into stack position 4 bytes lower than base pointer
+	movl	-4(%rbp), %eax #moves the value from -4(%rbp) into %eax
+	movl	%eax, %edi #moves source %eax into destination %edi
+	call	adder2 #runs adder2 function 
+	movl	%eax, -4(%rbp) #moves value from %eax into -4(%rbp)
+	movl	-4(%rbp), %eax # moves value from -4(%rbp) into %eax and this seems redundant
+	movl	%eax, %esi #move eax into esi 
+	leaq	.LC0(%rip), %rax #loads effective address indicated by %rip register 
+	movq	%rax, %rdi #moves a pointer value from %rax to %rdi
+	movl	$0, %eax #moves 0 into %eax, clearing %eax?
+	call	printf@PLT #calls printf to print
+	movl	$0, %eax #also moves 0 into %eax?
+	leaveq   #this ends the function by resetting stack and base pointers
+	retq

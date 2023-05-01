@@ -1,0 +1,34 @@
+objdump of sumTwo dot C
+
+100003f50: 55                           pushq   %rbp
+100003f51: 48 89 e5                     movq    %rsp, %rbp
+100003f54: 89 7d fc                     movl    %edi, -4(%rbp)
+100003f57: 8b 45 fc                     movl    -4(%rbp), %eax
+100003f5a: 83 c0 02                     addl    $2, %eax
+100003f5d: 5d                           popq    %rbp
+100003f5e: c3                           retq
+100003f5f: 90                           nop
+
+0000000100003f60 <_main>:
+100003f60: 55                           pushq   %rbp
+100003f61: 48 89 e5                     movq    %rsp, %rbp
+100003f64: 48 83 ec 10                  subq    $16, %rsp
+100003f68: c7 45 fc 00 00 00 00         movl    $0, -4(%rbp)
+100003f6f: c7 45 f8 28 00 00 00         movl    $40, -8(%rbp)
+100003f76: 8b 7d f8                     movl    -8(%rbp), %edi
+100003f79: e8 d2 ff ff ff               callq   0x100003f50 <_adder2>
+100003f7e: 89 45 f8                     movl    %eax, -8(%rbp)
+100003f81: 8b 75 f8                     movl    -8(%rbp), %esi
+100003f84: 48 8d 3d 15 00 00 00         leaq    21(%rip), %rdi          ## 0x100003fa0 <_printf+0x100003fa0>
+100003f8b: b0 00                        movb    $0, %al
+100003f8d: e8 08 00 00 00               callq   0x100003f9a <_printf+0x100003f9a>
+100003f92: 31 c0                        xorl    %eax, %eax
+100003f94: 48 83 c4 10                  addq    $16, %rsp
+100003f98: 5d                           popq    %rbp
+100003f99: c3                           retq
+
+Disassembly of section __TEXT,__stubs:
+
+0000000100003f9a <__stubs>:
+100003f9a: ff 25 60 00 00 00            jmpq    *96(%rip)               ## 0x100004000 <_printf+0x100004000>
+(END)

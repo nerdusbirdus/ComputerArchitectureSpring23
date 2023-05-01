@@ -2,7 +2,7 @@
         sta     num1
         in
         sta     num2
-        jn      n2big
+        jan      n2big
 n2big   lda     num1
         jmp     done
 n2big   lda     num2
