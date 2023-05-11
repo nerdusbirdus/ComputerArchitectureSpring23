@@ -1,7 +1,5 @@
 ;Program for averaging some constants 25, 18, 5, 8, 22
 
-;Hello World Jasmin program.
-; Modified from Jon Meyer's sample HelloWorld.j program.
 ; Replaces deprecated invokenonvirtual with invokespecial.
 
 .class public AverageConsts
@@ -18,9 +16,9 @@
 
 .method public static main([Ljava/lang/String;)V
 ; declaration, arg is an array of strings and the return type is V for void at the end
-   .limit stack 6
+   .limit stack 11
    ; needs 3 stack locations but why not have more?
-   .limit locals 1
+   .limit locals 6
    ;local variable passed in as an argument
 
    ; push System.out onto the stack
@@ -30,43 +28,40 @@
 ; push and add 5 int values onto the stack, left associative calculation
 ;then convert to float and divides to get average and prints
 ldc 25
+istore_1
 ldc 18
-iadd
+istore_2
 ldc 5
-iadd
+istore_3
 ldc 8
-iadd
+istore 4
 ldc 22
+istore 5
+
+;get the sum of the int values
+iload_1
+iload_2
 iadd
-ldc 5
+iload_3
+iadd
+iload 4
+iadd
+iload 5
+iadd
+
+;convert the sum to a float
 i2f
+
+;divide the sum by 5
 fdiv
 
-   ;call the PrintStream.println() method with a float, if the type is a primitive type it's just one letter
-   invokevirtual java/io/PrintStream.println(F)V
-   
-;try a right associative version (right to left)
-getstatic java/lang/System.out Ljava/io/PrintStream;
-;this pushes them all onto the stack then unwinds it summing as it comes back
-;uses 6 stack locations 
-;then converts to float and divides to get average and prints
-ldc 25
-ldc 18
-ldc 5
-ldc 8
-ldc 22
-iadd
-iadd
-iadd
-iadd
-ldc 5
-i2f
-fdiv 
-; fdiv after pushing onto stack
+;convert the float to a string
+invokevirtual java/lang/String.valueOf(F)Ljava/lang/String;
 
-;call the PrintStream.println() method with a float, if the type is a primitive type it's just one letter
-   invokevirtual java/io/PrintStream.println(F)V
-   ; done
+;call the PrintStream.println() method, if the type is a primitive type it's just one letter
+   invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+
+
 
    return
 
