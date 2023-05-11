@@ -1,0 +1,52 @@
+Compiled from "HelloWorld.j"
+public class HelloWorld extends java.lang.Object
+  SourceFile: "HelloWorld.j"
+  minor version: 0
+  major version: 46
+  Constant pool:
+const #1 = NameAndType	#25:#27;//  out:Ljava/io/PrintStream;
+const #2 = Asciz	([Ljava/lang/String;)V;
+const #3 = Asciz	java/lang/Object;
+const #4 = Asciz	<init>;
+const #5 = Asciz	Hello World!;
+const #6 = class	#3;	//  java/lang/Object
+const #7 = NameAndType	#4:#9;//  "<init>":()V
+const #8 = class	#19;	//  java/io/PrintStream
+const #9 = Asciz	()V;
+const #10 = String	#5;	//  Hello World!
+const #11 = class	#22;	//  java/lang/System
+const #12 = Asciz	Code;
+const #13 = Asciz	main;
+const #14 = class	#18;	//  HelloWorld
+const #15 = Field	#11.#1;	//  java/lang/System.out:Ljava/io/PrintStream;
+const #16 = Asciz	SourceFile;
+const #17 = NameAndType	#20:#26;//  println:(Ljava/lang/String;)V
+const #18 = Asciz	HelloWorld;
+const #19 = Asciz	java/io/PrintStream;
+const #20 = Asciz	println;
+const #21 = Method	#6.#7;	//  java/lang/Object."<init>":()V
+const #22 = Asciz	java/lang/System;
+const #23 = Asciz	HelloWorld.j;
+const #24 = Method	#8.#17;	//  java/io/PrintStream.println:(Ljava/lang/String;)V
+const #25 = Asciz	out;
+const #26 = Asciz	(Ljava/lang/String;)V;
+const #27 = Asciz	Ljava/io/PrintStream;;
+
+{
+public HelloWorld();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#21; //Method java/lang/Object."<init>":()V
+   4:	return
+
+public static void main(java.lang.String[]);
+  Code:
+   Stack=10, Locals=10, Args_size=1
+   0:	getstatic	#15; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	ldc	#10; //String Hello World!
+   5:	invokevirtual	#24; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   8:	return
+
+}
+
