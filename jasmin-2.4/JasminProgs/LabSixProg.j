@@ -1,18 +1,14 @@
 ;HELLO WORLD MODIFIED FOR PRINTING INT, FLOAT for lab 6
 ; hello world modified and commented by nerdusbirdus
 
-;Hello World Jasmin program.
-; Modified from Jon Meyer's sample HelloWorld.j program.
-; Replaces deprecated invokenonvirtual with invokespecial.
-
+;Jasmin compiler instructions 
 .class public HelloWorldNew
 .super java/lang/Object
 
-;
 ; standard initializer
 .method public <init>()V
    aload_0
- 
+ ; need invoke special for the language library for objects 
    invokespecial java/lang/Object/<init>()V
    return
 .end method
@@ -24,39 +20,36 @@
    .limit locals 10
 
 ; announce limit of local variables plus local variables
-; try making the stack limit small and seeing the error messages
    ; push System.out onto the stack
-
+   ;println needs system.out on stack then the string printed as arguments passed to print function
    getstatic java/lang/System.out Ljava/io/PrintStream;
 
 ;the printstream class has println method, and we are invoking printstream class to do this
-   ; push a string onto the stack
+   ; push a string onto the stack to be worked on
    ldc "Howdy! This program prints an integer and a float on the following two lines:"
 
 ; puts an address onto the stack, via reference to memory 
    ; call the PrintStream.println() method.
-   ;println needs system.out on stack then the string printed as arguments
-   ;the object reference is an argument
-   ;need the whole path name for the method, how do we find this? Look in JRE library.
-   ;everything in JVM is typed, all invokevirtuals follow this pattern
+   
 
    invokevirtual java/io/PrintStream.println(Ljava/lang/String;)V
 
    ;put object name onto the stack
+
    getstatic java/lang/System.out Ljava/io/PrintStream;
+
    ; we need to have two static print objects loaded onto stack because
-   ; we are doing two prints as stack "unwinds."
+   ; we are doing two prints as stack "unwinds." so we do the same instruction twice
+
    getstatic java/lang/System.out Ljava/io/PrintStream;
-
-
 
    ;push an int onto the stack
-   ldc 2056
+   ldc 431
 
    ;call the PrintStream.println() method with an int, if the type is a primitive type it's just one letter.
    invokevirtual java/io/PrintStream.println(I)V
 
-;load float onto stack 
+;load a float onto stack 
    ldc 3.14 
    
 ;call printstream and use F as return type for float, 
