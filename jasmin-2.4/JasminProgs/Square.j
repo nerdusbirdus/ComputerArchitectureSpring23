@@ -1,5 +1,5 @@
 ;Square.j
-;FIX THIS
+;WORKS
 ;create and call a static method Square with command line input
 
 .class public Square
@@ -32,8 +32,15 @@ invokestatic java.lang.Integer.parseInt(Ljava.lang.String;)I
 ;call our Square method - it works on doubles
 invokestatic Square.square(I)I
 
-   
-   .method public static square(I)I
+
+   ; call the PrintStream.println() method.
+   invokevirtual java/io/PrintStream.println(I)V
+
+   ; done
+   return
+.end method
+
+ .method public static square(I)I
    
    .limit stack 2
    .limit locals 1
@@ -42,12 +49,3 @@ invokestatic Square.square(I)I
    imul
    ireturn
 .end method 
-
-
-
-   ; call the PrintStream.println() method.
-   invokevirtual java/io/PrintStream.println(D)V
-
-   ; done
-   return
-.end method
