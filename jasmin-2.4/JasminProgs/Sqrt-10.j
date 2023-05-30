@@ -1,8 +1,8 @@
 ;Sqrt10.j
 ;WORKS
-;does the square root of 10
+;does the square root of negative 10 and should output NaN
 
-.class public Sqrt10
+.class public SqrtNeg10
 .super java/lang/Object
 
 ;
@@ -23,7 +23,7 @@
    getstatic java/lang/System.out Ljava/io/PrintStream;
 
    ; push 10.0 float onto the stack and then convert it to double 
-   ldc 10.0
+   ldc -10.0
    f2d
 
    ;call the math.sqrt method to work on a double, takes double returns double. 

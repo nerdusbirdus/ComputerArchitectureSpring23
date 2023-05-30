@@ -1,11 +1,8 @@
-;max2.j prints the maximum of two command line int args
-;FIX THIS
-;create and call a static method Square with command line input
+; Max2.j - print the maxmimum of two command-line integer arguments
 
 .class public Max2
 .super java/lang/Object
 
-;
 ; standard initializer
 .method public <init>()V
    aload_0
@@ -18,29 +15,33 @@
    .limit stack 4
    .limit locals 1
 
+   ; TODO Check to make sure there are exactly 2 command line arguments. If not then
+   ;   - print Usage: java Max2 <int> <int>
+   ;   and exit
+
    ; push System.out onto the stack
    getstatic java/lang/System.out Ljava/io/PrintStream;
 
-; get first command line input arg iconst 0 and convert to an int
-aload 0
-iconst_0
-aaload 
+   ; get first command line argument and conver to int
+   aload 0
+   iconst_0
+   aaload
 
-; comnvert command line string argument to int
-invokestatic java.lang.Integer.parseInt(Ljava.lang.String;)I
+   ; convert the command-line string argument to int
+   invokestatic java.lang.Integer.parseInt(Ljava.lang.String;)I
 
-;get the second command line argument int at iconst 1
-aload 0
-iconst_1
-aaload 
+   ; get the second command-line argument
+    aload 0
+   iconst_1
+   aaload
 
-; comnvert second command line string argument to int
-invokestatic java.lang.Integer.parseInt(Ljava.lang.String;)I
+   ; convert the second command-line string argument to int
+   invokestatic java.lang.Integer.parseInt(Ljava.lang.String;)I
 
-;call our Square method - it works on doubles
-invokestatic Max2.max(II)I
+   ; call our max method
+   invokestatic Max2.max(II)I
 
-   ; call the PrintStream.println() method.
+   ; output the resulting maximum 
    invokevirtual java/io/PrintStream.println(I)V
 
    ; done
@@ -48,15 +49,23 @@ invokestatic Max2.max(II)I
 .end method
 
 .method public static max(II)I
-   
-   .limit stack 2
-   .limit locals 2
-   iload 0
-   iload 1
-   
-   ;currently just prints second command line argument out of 2. 
-   ;TODO figure out which one is largest and return the larger one
-   ;it will involve jumps
+  .limit stack 2
+  .limit locals 2
 
-   ireturn
-.end method 
+  iload 0
+  iload 1
+ 
+ ;we literally just make a label firstIsMax and have it return the first arg 
+  if_icmpge firstIsMax
+
+  ;and if the first one isn't max we can just go on, you don't actually need this label.
+secondIsMax:
+  iload 1
+  goto done
+
+firstIsMax:
+  iload 0
+
+done:
+  ireturn
+  .end method
