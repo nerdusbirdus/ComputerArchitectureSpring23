@@ -1,0 +1,15 @@
+notes for dist
+
+;goal is to load both of the squares from the local values, then sum them together then put them in local_0 
+   ; load arg at 0 and then call parseint to parse the first command-line input as an integer
+  ;aload_0
+  ;iconst_0
+  ;aaload
+ ;invokestatic java/lang/Integer/parseInt(Ljava/lang/String;)I
+  
+  ; parse the second command-line input as an integer
+ ;aload_0
+ ;iconst_1
+ ;aaload
+ ;invokestatic java/lang/Integer/parseInt(Ljava/lang/String;)I
+  

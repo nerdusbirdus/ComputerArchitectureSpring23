@@ -1,5 +1,4 @@
 ; AddTwo.j - Adds two command-line args you give it and prints them.
-;Todo: the version here does not check to see whether we have the correct number of args
 
 .class public AddTwo
 .super java/lang/Object
@@ -11,9 +10,8 @@
   return
 .end method
 
-;we need a big stack size of 4 at once because we have two args on there plus an object reference and another object reference
 .method public static main([Ljava/lang/String;)V
-  .limit stack 4
+  .limit stack 3
   .limit locals 3
   
   ; push System.out onto the stack to print after it all unwinds

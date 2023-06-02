@@ -1,5 +1,5 @@
-; Get one command line string argument and print it
-; version checks to make sure there is a command line argument 
+; Get two command line string arguments and print them
+; this version checks to make sure there are two command line arguments
 .class public EchoTwoArgs
 .super java/lang/Object
 
@@ -26,7 +26,7 @@
    iconst_2
    if_icmpeq gotArgOk
 
-; when comparison equal we go to gotArgOK
+; if result of comparison to 2 is true we go to gotArgOK, else fall through to useage message
    
    ldc "Useage: java EchoTwoArgs <string, string>"
    invokevirtual java.io.PrintStream.println(Ljava.lang.String;)V
