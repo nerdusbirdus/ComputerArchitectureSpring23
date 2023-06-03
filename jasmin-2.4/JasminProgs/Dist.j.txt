@@ -11,7 +11,7 @@
 ;I tried very hard and stressed out a lot about the program here and still failed to achieve my goals but I hope my efforts will be recognized.
 ;I realize that part of the requirement was to have the dist function take integer arguments not doubles, but I dont have the time to fix it before the deadline.
 ;I had built a previous version that handled doubles as required and then got so caught up in trying to make arguments 6, -7 work that I forgot about the actual requirement. 
-;I hate myself deeply because of the failure I have made of the assignment and I hope I can still get credit in the course despite the errors. 
+;I am deeply disappointed in myself because of the failure I have made of the assignment and I hope I can still get credit in the course despite the errors. 
 
 .class public Dist
 .super java/lang/Object
@@ -59,7 +59,7 @@
    iconst_1
    aaload
 
-    ; convert the second command-line string argument to double, which I know was not what was asked.
+    ; convert the second command-line string argument to double, which I know was not what was asked!
    invokestatic java.lang.Double.parseDouble(Ljava/lang/String;)D
 
    ; call our Dist method that takes two doubles and returns a double to be printed 
