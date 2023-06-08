@@ -60,7 +60,7 @@
    
 
    ; call our Dist method that takes two doubles and returns a double to be printed 
-   invokestatic Dist.dist(DD)D
+   invokestatic Dist2.dist2(DD)D
 
    ; print the double result of the calculation of the square root of the sum of the squares of the args which is returned from the dist method
    invokevirtual java/io/PrintStream.println(D)V
@@ -70,7 +70,7 @@
 .end method
 
 ;start our dist method that takes two doubles and returns a double to print
-.method public static dist(DD)D
+.method public static dist2(DD)D
   .limit stack 6
   .limit locals 6
  
