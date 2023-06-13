@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "IntroJava.NotBoggle.Main",
+            "projectName": "ComputerArchitectureSpring23_ea0197a0"
+        },
+        {
+            "type": "java",
             "name": "theGronkalizer",
             "request": "launch",
             "mainClass": "IntroJava.theGronkalizer",

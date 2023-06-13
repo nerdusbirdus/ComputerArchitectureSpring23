@@ -1,0 +1,1 @@
+These classes implement my final project for the Spring semester of Intro Java at TESC. It is a boggle-like game that is kind of fun to play.
